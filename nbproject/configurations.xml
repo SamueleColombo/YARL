@@ -30,6 +30,8 @@
                    projectFiles="false">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>LICENSE</itemPath>
+    <itemPath>README.md</itemPath>
   </logicalFolder>
   <sourceRootList>
     <Elem>darray</Elem>
@@ -44,6 +46,10 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="LICENSE" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="README.md" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="darray/d_array.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="darray/d_array.h" ex="false" tool="3" flavor2="0">
