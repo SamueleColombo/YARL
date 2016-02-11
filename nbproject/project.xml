@@ -12,6 +12,7 @@
             <make-dep-projects/>
             <sourceRootList>
                 <sourceRootElem>darray</sourceRootElem>
+                <sourceRootElem>dtable</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

@@ -8,6 +8,11 @@
       <itemPath>darray/d_array.c</itemPath>
       <itemPath>darray/d_array.h</itemPath>
     </logicalFolder>
+    <logicalFolder name="dtable" displayName="Dynamic Table" projectFiles="true">
+      <itemPath>dtable/d_cell.h</itemPath>
+      <itemPath>dtable/d_table.c</itemPath>
+      <itemPath>dtable/d_table.h</itemPath>
+    </logicalFolder>
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
@@ -30,11 +35,17 @@
                    projectFiles="false">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
     <itemPath>LICENSE</itemPath>
     <itemPath>README.md</itemPath>
   </logicalFolder>
   <sourceRootList>
     <Elem>darray</Elem>
+    <Elem>dtable</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -53,6 +64,12 @@
       <item path="darray/d_array.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="darray/d_array.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="dtable/d_cell.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="dtable/d_table.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="dtable/d_table.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="lex.yy.c" ex="false" tool="0" flavor2="0">
       </item>

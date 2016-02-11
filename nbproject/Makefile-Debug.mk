@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/darray/d_array.o \
+	${OBJECTDIR}/dtable/d_table.o \
 	${OBJECTDIR}/lex.yy.o \
 	${OBJECTDIR}/y.tab.o
 
@@ -68,6 +69,11 @@ ${OBJECTDIR}/darray/d_array.o: darray/d_array.c
 	${MKDIR} -p ${OBJECTDIR}/darray
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/darray/d_array.o darray/d_array.c
+
+${OBJECTDIR}/dtable/d_table.o: dtable/d_table.c 
+	${MKDIR} -p ${OBJECTDIR}/dtable
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/dtable/d_table.o dtable/d_table.c
 
 ${OBJECTDIR}/lex.yy.o: lex.yy.c 
 	${MKDIR} -p ${OBJECTDIR}
