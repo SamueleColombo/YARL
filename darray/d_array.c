@@ -13,7 +13,7 @@
  */
 d_array * d_array_new(size_t element_size)
 {
-    return d_array_new_sized(element_size, 10);
+    return d_array_new_sized(element_size, 100);
 }
 
 /**
@@ -31,6 +31,7 @@ d_array * d_array_new_sized(size_t element_size, size_t initial_size)
     array->element_size = element_size;
     array->array_size = initial_size;
     array->length = 0;
+    array->array = malloc(element_size * initial_size);
     
     return array;
 }
@@ -58,7 +59,7 @@ bool d_array_realloc(d_array * array)
     
     if(data)
     {
-        array->array_size++;
+        array->array_size *= 2;
         return true;
     }
     else
@@ -79,7 +80,7 @@ bool d_array_push(d_array * array, void * data)
     
     if(array->length + 1 > array->array_size)
     {
-        d_array_realloc(array);
+        return d_array_realloc(array);
     }
     
     offset = array->element_size * array->length;
