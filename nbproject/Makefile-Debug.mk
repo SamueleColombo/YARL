@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/darray/d_array.o \
 	${OBJECTDIR}/dtable/d_table.o \
 	${OBJECTDIR}/lex.yy.o \
+	${OBJECTDIR}/parser.o \
 	${OBJECTDIR}/y.tab.o
 
 
@@ -79,6 +80,11 @@ ${OBJECTDIR}/lex.yy.o: lex.yy.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/lex.yy.o lex.yy.c
+
+${OBJECTDIR}/parser.o: parser.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/parser.o parser.c
 
 lex.yy.c: token.l y.tab.h
 	@echo Running flex...

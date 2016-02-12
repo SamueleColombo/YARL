@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="97">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
-    <logicalFolder name="f1"
-                   displayName="Dynamic Array"
-                   projectFiles="true"
-                   kind="ROOT">
+    <logicalFolder name="f1" displayName="Dynamic Array" projectFiles="true">
       <itemPath>darray/d_array.c</itemPath>
       <itemPath>darray/d_array.h</itemPath>
     </logicalFolder>
@@ -16,6 +13,8 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>parser.h</itemPath>
+      <itemPath>syntax.h</itemPath>
       <itemPath>y.tab.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -26,6 +25,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>lex.yy.c</itemPath>
+      <itemPath>parser.c</itemPath>
       <itemPath>token.l</itemPath>
       <itemPath>token.y</itemPath>
       <itemPath>y.tab.c</itemPath>
@@ -72,6 +72,12 @@
       <item path="dtable/d_table.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="lex.yy.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="parser.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="parser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="syntax.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="token.l" ex="false" tool="3" flavor2="0">
         <customTool>
