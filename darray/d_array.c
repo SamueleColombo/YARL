@@ -13,6 +13,7 @@
  */
 d_array * d_array_new(size_t element_size)
 {
+    assert(element_size > 0);
     return d_array_new_sized(element_size, 100);
 }
 
@@ -27,11 +28,13 @@ d_array * d_array_new_sized(size_t element_size, size_t initial_size)
     d_array * array;
     
     array = (d_array *) malloc(sizeof(d_array));
+    assert(array);
     
     array->element_size = element_size;
-    array->array_size = initial_size;
+    array->capacity = initial_size;
     array->length = 0;
-    array->array = malloc(element_size * initial_size);
+    array->array = malloc(array->element_size * initial_size);
+    assert(array->array);
     
     return array;
 }
@@ -55,11 +58,36 @@ bool d_array_realloc(d_array * array)
 {
     void * data;
     
-    data = realloc(array->array, array->element_size * array->array_size * 2);
+    data = realloc(array->array, array->element_size * array->capacity * 2);
     
     if(data)
     {
-        array->array_size *= 2;
+        array->array = data;
+        array->capacity *= 2;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+/**
+ * 
+ * @param array
+ * @param size_to_add
+ * @return 
+ */
+bool d_array_realloc_sized(d_array * array, size_t size_to_add)
+{
+    void * data;
+    
+    data = realloc(array->array, array->element_size * (array->capacity + size_to_add));
+    
+    if(data)
+    {
+        array->array = data;
+        array->capacity += size_to_add;
         return true;
     }
     else
@@ -78,7 +106,7 @@ bool d_array_push(d_array * array, void * data)
 {
     int offset;
     
-    if(array->length + 1 > array->array_size)
+    if(array->length + 1 > array->capacity)
     {
         return d_array_realloc(array);
     }
@@ -90,6 +118,12 @@ bool d_array_push(d_array * array, void * data)
     return true;
 }
 
+/**
+ * 
+ * @param array
+ * @param index
+ * @return 
+ */
 bool d_array_remove(d_array * array, int index)
 {
     int replacement, offset;
@@ -124,7 +158,7 @@ bool d_array_set(d_array * array, void * data, int index)
     
     if(index < 0) return false;
     
-    if(index > array->array_size)
+    if(index > array->capacity)
     {
         d_array_realloc(array);
         return d_array_set(array, data, index);
@@ -149,6 +183,19 @@ void * d_array_get(d_array * array, int index)
     if(index < 0 || index > array->length) return NULL;
     offset = array->element_size * index;
     return array->array + offset;
+}
+
+void d_array_merge(d_array * dst, d_array * src)
+{
+    int i;
+    
+    d_array_realloc_sized(dst, src->capacity);
+    
+    for(i = 0; i < src->length; i++)
+    {
+        void * element = d_array_get(src, i);
+        d_array_push(dst, element);
+    }
 }
 
 

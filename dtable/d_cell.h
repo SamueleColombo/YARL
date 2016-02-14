@@ -15,11 +15,21 @@
 #define D_CELL_H
 
 #include <stdbool.h>
+#include "../syntax.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+    typedef enum d_type
+    {
+        D_INTEGER = TP_INTEGER,
+        D_FLOAT = TP_REAL,
+        D_STRING = TP_STRING,
+        D_BOOLEAN = TP_BOOLEAN
+    } 
+    d_type;
+    
     typedef struct d_cell
     {
         union
@@ -30,14 +40,7 @@ extern "C" {
             bool bval;
         } value;
         
-        enum
-        {
-            D_INTEGER,
-            D_FLOAT,
-            D_STRING,
-            D_BOOLEAN
-        } type;
-        
+        d_type type;
         bool is_empty;
     }
     d_cell;

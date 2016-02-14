@@ -14,6 +14,8 @@
 #ifndef SYNTAX_H
 #define SYNTAX_H
 
+#include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 
 #ifdef __cplusplus
@@ -72,7 +74,8 @@ extern "C" {
 
     typedef Node * PNode;
 
-    PNode parse();
+    PNode parse(FILE *);
+    void treeprint(PNode node, int indent);
 
 
 #ifdef __cplusplus

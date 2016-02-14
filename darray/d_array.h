@@ -18,6 +18,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <assert.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -28,7 +29,7 @@ extern "C" {
     {
         size_t length;
         size_t element_size;
-        size_t array_size;
+        size_t capacity;
         
         void * array;
     }
@@ -38,10 +39,12 @@ extern "C" {
     d_array * d_array_new_sized(size_t element_size, size_t initial_size);
     void d_array_free(d_array * array);
     bool d_array_realloc(d_array * array);
+    bool d_array_realloc_sized(d_array * array, size_t size_to_add);
     bool d_array_push(d_array * array, void * data);
     bool d_array_remove(d_array * array, int index);
     bool d_array_set(d_array * array, void * data, int index);
     void * d_array_get(d_array * array, int index);
+    void d_array_merge(d_array * dst, d_array * src);
 
 
 #ifdef __cplusplus

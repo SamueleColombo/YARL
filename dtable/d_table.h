@@ -40,6 +40,9 @@ extern "C" {
     d_table * d_table_new(char * name);
     d_table * d_table_new_sized(char * name, size_t initial_row_size, size_t initial_col_size);
     void d_table_free(d_table * table);
+    
+    
+    d_table * d_table_exist(d_array * array, char * name);
 
 #ifdef __cplusplus
 }

@@ -1,14 +1,14 @@
 %{
     #include <stdio.h>
+    #include <stdlib.h>
     #include "syntax.h"
     #include "parser.h"
-    //#include "tree_print.h"
 
     #define YYSTYPE PNode
     
     extern char * yytext;
     extern Lexval lexval;
-    extern FILE *yyin;
+    extern FILE * yyin;
     extern int line;
 
     PNode root = NULL;
@@ -156,7 +156,7 @@ specifier	: '[' expr ']'	{$$ = nonTerminalNode(NT_SPECIFIER); $$->child = $2; }
 write_stat 	: WRITE specifier rel_expr { $$ = nonTerminalNode(NT_WRITE_STAT); $$->child = $2; $$->child->brother = $3; }
                 ;
 %%
-
+/*
 main()
 {
     // Intro
@@ -165,12 +165,21 @@ main()
     // Start the parser
     return(yyparse());
 }
+*/
 
-yyerror(s)
-char *s;
+PNode parse(FILE * file)
 {
-    printf("yacc error: %s\n", s);
+	
+    yyin = (file == NULL) ? stdin : file;
+    return (yyparse() == 0) ? root : NULL;
 }
+
+yyerror()
+{
+    fprintf(stderr, "Line %d: syntax error on symbol \"%s\"\n", line, yytext);
+    printf("Line %d: syntax error on symbol \"%s\"\n", line, yytext);
+}
+
 
 yywrap()
 {

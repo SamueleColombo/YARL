@@ -38,7 +38,10 @@ OBJECTFILES= \
 	${OBJECTDIR}/darray/d_array.o \
 	${OBJECTDIR}/dtable/d_table.o \
 	${OBJECTDIR}/lex.yy.o \
+	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/parser.o \
+	${OBJECTDIR}/semantic.o \
+	${OBJECTDIR}/syntax.o \
 	${OBJECTDIR}/y.tab.o
 
 
@@ -81,10 +84,25 @@ ${OBJECTDIR}/lex.yy.o: lex.yy.c
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/lex.yy.o lex.yy.c
 
+${OBJECTDIR}/main.o: main.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.c
+
 ${OBJECTDIR}/parser.o: parser.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/parser.o parser.c
+
+${OBJECTDIR}/semantic.o: semantic.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/semantic.o semantic.c
+
+${OBJECTDIR}/syntax.o: syntax.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/syntax.o syntax.c
 
 lex.yy.c: token.l y.tab.h
 	@echo Running flex...

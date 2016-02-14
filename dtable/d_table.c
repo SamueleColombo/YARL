@@ -63,8 +63,54 @@ void d_table_free(d_table * table)
         free(table->table[r]);
     }
     
+    d_array_free(table->columns);
     free(table->table);
     free(table);
+}
+
+/**
+ * 
+ * @param table
+ * @return 
+ */
+bool d_table_realloc_rows(d_table * table)
+{
+    void * data;
+    
+    data = realloc(table->table, sizeof(d_cell *) * table->row_size * 2);
+    
+    if(!data) return false;
+   
+    table->row_size *= 2;
+    free(data);
+    
+    return true;
+
+}
+
+/**
+ * 
+ * @param table
+ * @return 
+ */
+bool d_table_realloc_columns(d_table * table)
+{
+    int r;
+    void * data;
+    
+    if(d_array_realloc(table->columns) == false) return false;
+    
+    for(r = 0; r < table->row_size; r++)
+    {
+        data = realloc(table->table[r], sizeof(d_cell) * table->col_size * 2);
+        
+        if(!data) return false;
+    }
+    
+    table->col_size *= 2;
+    free(data);
+    
+    return true;   
 }
 
 /**
@@ -81,9 +127,9 @@ int d_table_get_index_column(d_table * table, char * name)
     
     for(c = 0; c < table->columns->length; c++)
     {
-        char * column = d_array_get(table->columns, c);
+        d_cell * column = d_array_get(table->columns, c);
         
-        if(column != NULL && strcmp(column, name) == 0)
+        if(column != NULL && strcmp(column->value.sval, name) == 0)
         {
             return c;
         }
@@ -109,13 +155,13 @@ bool d_table_alter(d_table * table, d_cell * column)
     
     if(table->cols + 1 > table->col_size)
     {
-        // Expand cols
+        if(d_table_realloc_columns(table) == false) return false;
     }
     
     d_array_push(table->columns, column);
     
     table->cols = table->columns->length;
-    table->col_size = table->columns->array_size;
+    table->col_size = table->columns->capacity;
     
     return true;    
 }
@@ -130,11 +176,11 @@ bool d_table_insert(d_table * table, d_array * new_row)
 {
     int c;
     
-    if(table->cols != new_row->length || table->cols == 0) return false;
+    //if(table->cols != new_row->length || table->cols == 0) return false;
     
     if(table->rows + 1 > table->row_size)
     {
-        // Row expand
+        if(d_table_realloc_rows(table) == false) return false;
     }
     
     for(c = 0; c < new_row->length; c++)
@@ -142,11 +188,66 @@ bool d_table_insert(d_table * table, d_array * new_row)
         d_cell * new_cell = d_array_get(new_row, c);
         table->table[table->rows][c] = *new_cell;
     }
-
     
     return true;
 }
 
+/**
+ * 
+ * @param array
+ * @param name
+ * @return 
+ */
+d_table * d_table_exist(d_array * array, char * name)
+{
+    int i;
+    d_table * table;
+    
+    for(i = 0; i < array->length; i++)
+    {
+        table = d_array_get(array, i);
+        
+        if(strcmp(table->name, name) == 0)
+        {
+            return table;
+        }
+    }
+    
+    return NULL;
+}
 
+bool d_table_match(d_table * dst, d_table * src)
+{
+    int i, j;
+    
+    if(dst->columns->length != src->columns->length) return false;
+    
+    for(i = 0; i < dst->columns->length; i++)
+    {
+        d_cell * src_cell = d_array_get(src->columns, i);
+        d_cell * dst_cell = d_array_get(dst->columns, i);
+        
+        if(dst_cell->type != src_cell->type)
+        {
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+void d_table_clone_struct(d_table * dst, d_table * src)
+{
+    int i;
+    d_cell * old;
+    d_cell new;
+    
+    for(i = 0; i < src->columns->length; i++)
+    {
+        old = d_array_get(src->columns, i);
+        new = *old;
+        d_array_push(dst->columns, &new);  
+    }
+}
 
 
