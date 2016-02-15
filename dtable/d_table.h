@@ -15,6 +15,8 @@
 #define D_TABLE_H
 
 #include <stdlib.h>
+
+#include "../syntax.h"
 #include "d_cell.h"
 #include "../darray/d_array.h"
 
@@ -27,9 +29,7 @@ extern "C" {
         char * name;
         
         size_t rows;
-        size_t cols;
         size_t row_size;
-        size_t col_size;
         
         d_array * columns;
         d_cell ** table;

@@ -32,19 +32,17 @@ d_table * d_table_new_sized(char * name, size_t initial_row_size, size_t initial
     
     table->name = name;
     table->rows = 0;
-    table->rows = 0;
     table->row_size = initial_row_size;
-    table->col_size = initial_col_size;
     
     // Initialize columns array
-    table->columns = d_array_new_sized(sizeof(d_cell), table->col_size);
+    table->columns = d_array_new_sized(sizeof(d_cell), initial_col_size);
     
     // Initialize data multi-array
     table->table = (d_cell **) malloc(sizeof(d_cell *) * table->row_size);
     
     for(r = 0; r < table->row_size; r++)
     {
-        table->table[r] = (d_cell *) malloc(sizeof(d_cell) * table->col_size);
+        table->table[r] = (d_cell *) malloc(sizeof(d_cell) * table->columns->capacity);
     }
     
     return table;
@@ -102,12 +100,11 @@ bool d_table_realloc_columns(d_table * table)
     
     for(r = 0; r < table->row_size; r++)
     {
-        data = realloc(table->table[r], sizeof(d_cell) * table->col_size * 2);
+        data = realloc(table->table[r], sizeof(d_cell) * table->columns->capacity);
         
         if(!data) return false;
     }
     
-    table->col_size *= 2;
     free(data);
     
     return true;   
@@ -153,16 +150,13 @@ bool d_table_alter(d_table * table, d_cell * column)
     
     if(cindex != -1) return false;
     
-    if(table->cols + 1 > table->col_size)
+    if(table->columns->length + 1 > table->columns->capacity)
     {
         if(d_table_realloc_columns(table) == false) return false;
     }
     
     d_array_push(table->columns, column);
-    
-    table->cols = table->columns->length;
-    table->col_size = table->columns->capacity;
-    
+        
     return true;    
 }
 
@@ -216,6 +210,12 @@ d_table * d_table_exist(d_array * array, char * name)
     return NULL;
 }
 
+/**
+ * 
+ * @param dst
+ * @param src
+ * @return 
+ */
 bool d_table_match(d_table * dst, d_table * src)
 {
     int i, j;
@@ -236,6 +236,11 @@ bool d_table_match(d_table * dst, d_table * src)
     return true;
 }
 
+/**
+ * 
+ * @param dst
+ * @param src
+ */
 void d_table_clone_struct(d_table * dst, d_table * src)
 {
     int i;
@@ -248,6 +253,13 @@ void d_table_clone_struct(d_table * dst, d_table * src)
         new = *old;
         d_array_push(dst->columns, &new);  
     }
+    
+    realloc(dst->table, sizeof(d_cell **) * src->row_size);
+    
+    for(i = 0; i < src->row_size; i++)
+    {
+        realloc(dst->table[i], sizeof(d_cell *) * src->columns->capacity);
+    }
+    
+    dst->row_size = src->row_size;
 }
-
-
