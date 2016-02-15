@@ -685,7 +685,7 @@ void semantic_write_stat(PNode write_stat)
 {
     PNode current;
     PNode next;
-    
+    FILE * file;
     d_table * input;
     
     current = write_stat;
@@ -698,7 +698,11 @@ void semantic_write_stat(PNode write_stat)
         exit(EXIT_FAILURE);
     }
     
-    semantic_rel_expr(next->child);
+    input = semantic_rel_expr(next->child);
+    
+    
+    
+    
     
 }
         
