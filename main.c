@@ -17,6 +17,7 @@
 #include "syntax.h"
 #include "semantic.h"
 #include "dtable/d_cell.h"
+#include "interpreter.h"
 
 /*
  * 
@@ -28,6 +29,7 @@ int main(int argc, char ** argv)
     PNode node = parse(file);
     treeprint(node, 0);
     semantic(node);
+    interpreter(node);
     
     return (EXIT_SUCCESS);
 }

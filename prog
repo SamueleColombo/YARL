@@ -1,8 +1,5 @@
 create T1, T2(a:integer, b:string);
 create T3, T4 (a: integer);
 
-read T1;
-read [ "ciao" ] T2;
 
-write T1;
-write ["ciao"] select[true] T2;
+read ["data"] T1;

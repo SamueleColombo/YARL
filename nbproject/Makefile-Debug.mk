@@ -37,6 +37,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/darray/d_array.o \
 	${OBJECTDIR}/dtable/d_table.o \
+	${OBJECTDIR}/fileio/fileio.o \
+	${OBJECTDIR}/interpreter.o \
 	${OBJECTDIR}/lex.yy.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/parser.o \
@@ -78,6 +80,16 @@ ${OBJECTDIR}/dtable/d_table.o: dtable/d_table.c
 	${MKDIR} -p ${OBJECTDIR}/dtable
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/dtable/d_table.o dtable/d_table.c
+
+${OBJECTDIR}/fileio/fileio.o: fileio/fileio.c 
+	${MKDIR} -p ${OBJECTDIR}/fileio
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/fileio/fileio.o fileio/fileio.c
+
+${OBJECTDIR}/interpreter.o: interpreter.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/interpreter.o interpreter.c
 
 ${OBJECTDIR}/lex.yy.o: lex.yy.c 
 	${MKDIR} -p ${OBJECTDIR}

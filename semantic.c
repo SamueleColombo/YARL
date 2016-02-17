@@ -699,10 +699,5 @@ void semantic_write_stat(PNode write_stat)
     }
     
     input = semantic_rel_expr(next->child);
-    
-    
-    
-    
-    
 }
         

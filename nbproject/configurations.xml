@@ -10,9 +10,14 @@
       <itemPath>dtable/d_table.c</itemPath>
       <itemPath>dtable/d_table.h</itemPath>
     </logicalFolder>
+    <logicalFolder name="fileio" displayName="File I/O" projectFiles="true">
+      <itemPath>fileio/fileio.c</itemPath>
+      <itemPath>fileio/fileio.h</itemPath>
+    </logicalFolder>
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>interpreter.h</itemPath>
       <itemPath>parser.h</itemPath>
       <itemPath>semantic.h</itemPath>
       <itemPath>syntax.h</itemPath>
@@ -25,6 +30,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>interpreter.c</itemPath>
       <itemPath>lex.yy.c</itemPath>
       <itemPath>main.c</itemPath>
       <itemPath>parser.c</itemPath>
@@ -46,10 +52,13 @@
     </logicalFolder>
     <itemPath>LICENSE</itemPath>
     <itemPath>README.md</itemPath>
+    <itemPath>data</itemPath>
   </logicalFolder>
   <sourceRootList>
     <Elem>darray</Elem>
     <Elem>dtable</Elem>
+    <Elem>csvio</Elem>
+    <Elem>fileio</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -69,11 +78,21 @@
       </item>
       <item path="darray/d_array.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="data" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="dtable/d_cell.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="dtable/d_table.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="dtable/d_table.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="fileio/fileio.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="fileio/fileio.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="interpreter.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="interpreter.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="lex.yy.c" ex="false" tool="0" flavor2="0">
       </item>

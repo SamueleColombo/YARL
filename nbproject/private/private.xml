@@ -8,17 +8,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Samuele%20Colombo/Documents/NetBeansProjects/YARL/prog</file>
+            <file>file:/C:/Users/Samuele%20Colombo/Documents/NetBeansProjects/YARL/data</file>
             <file>file:/C:/Users/Samuele%20Colombo/Documents/NetBeansProjects/YARL/dtable/d_table.h</file>
             <file>file:/C:/Users/Samuele%20Colombo/Documents/NetBeansProjects/YARL/semantic.c</file>
-            <file>file:/C:/Users/Samuele%20Colombo/Documents/NetBeansProjects/YARL/parser.c</file>
-            <file>file:/C:/Users/Samuele%20Colombo/Documents/NetBeansProjects/YARL/syntax.c</file>
-            <file>file:/C:/Users/Samuele%20Colombo/Documents/NetBeansProjects/YARL/semantic.h</file>
-            <file>file:/C:/Users/Samuele%20Colombo/Documents/NetBeansProjects/YARL/main.c</file>
             <file>file:/C:/Users/Samuele%20Colombo/Documents/NetBeansProjects/YARL/dtable/d_table.c</file>
-            <file>file:/C:/Users/Samuele%20Colombo/Documents/NetBeansProjects/YARL/syntax.h</file>
-            <file>file:/C:/Users/Samuele%20Colombo/Documents/NetBeansProjects/YARL/dtable/d_cell.h</file>
-            <file>file:/C:/Users/Samuele%20Colombo/Documents/NetBeansProjects/YARL/y.tab.h</file>
-            <file>file:/C:/Users/Samuele%20Colombo/Documents/NetBeansProjects/YARL/darray/d_array.c</file>
+            <file>file:/C:/Users/Samuele%20Colombo/Documents/NetBeansProjects/YARL/fileio/fileio.c</file>
+            <file>file:/C:/Users/Samuele%20Colombo/Documents/NetBeansProjects/YARL/main.c</file>
+            <file>file:/C:/Users/Samuele%20Colombo/Documents/NetBeansProjects/YARL/interpreter.c</file>
+            <file>file:/C:/Users/Samuele%20Colombo/Documents/NetBeansProjects/YARL/fileio/fileio.h</file>
         </group>
     </open-files>
 </project-private>
